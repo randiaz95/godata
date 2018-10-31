@@ -19,7 +19,7 @@ func mapify(input string) map[string]int {
 	var count int
 	var exists bool
 
-	for _, word := range strings.Split(input, " ") {
+	for _, word = range strings.Split(input, " ") {
 		if count, exists = frequency[word]; exists {
 			frequency[word] = count + 1
 		} else {
