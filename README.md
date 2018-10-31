@@ -1,2 +1,2 @@
 # gomap
-Functions for go maps
+Functions to reduce go boilerplate code.
