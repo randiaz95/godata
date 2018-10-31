@@ -1,6 +1,6 @@
 package main
 
-import ("fmt"; "strings")
+import ("fmt"; "regexp")
 
 func main() {
 
@@ -12,36 +12,12 @@ func main() {
 }
 
 func clean_string(input string) string {
-	// Get string and remove all non alphabetic characters.
+    // Get string and remove all non alphabetic characters.
 	
-	input = strings.Replace(input, ".", -1)
-	input = strings.Replace(input, "!", -1)
-	input = strings.Replace(input, ",", -1)
-	input = strings.Replace(input, "-", -1)
-	input = strings.Replace(input, ")", -1)
-	input = strings.Replace(input, "(", -1)
-	input = strings.Replace(input, "[", -1)
-	input = strings.Replace(input, "]", -1)
-	input = strings.Replace(input, "@", -1)
-	input = strings.Replace(input, "#", -1)
-	input = strings.Replace(input, "$", -1)
-	input = strings.Replace(input, "^", -1)
-	input = strings.Replace(input, "&", -1)
-	input = strings.Replace(input, "*", -1)
-	input = strings.Replace(input, "_", -1)
-	input = strings.Replace(input, "+", -1)
-	input = strings.Replace(input, "=", -1)
-	input = strings.Replace(input, "`", -1)
-	input = strings.Replace(input, "~", -1)
-	input = strings.Replace(input, "{", -1)
-	input = strings.Replace(input, "}", -1)
-	input = strings.Replace(input, ":", -1)
-	input = strings.Replace(input, "\"", -1)
-	input = strings.Replace(input, "\\", -1)
-	input = strings.Replace(input, "|", -1)
-	input = strings.Replace(input, ";", -1)
-	input = strings.Replace(input, ">", -1)
-	input = strings.Replace(input, "<", -1)
-	input = strings.Replace(input, "/", -1)
-	return input
+    reg, err := regexp.Compile("[^ a-zA-Z0-9]+")
+    if err != nil {
+    	fmt.Println("ERROR: ", err)
+        panic(err)
+    }
+    return reg.ReplaceAllString(input, "")
 }
