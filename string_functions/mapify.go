@@ -30,38 +30,3 @@ func mapify(input string) map[string]int {
 	return frequency
 
 }
-
-func clean_string(input string) string {
-	// Get string and remove all non alphabetic characters.
-	
-	input = strings.Replace(input, ".", -1)
-	input = strings.Replace(input, "!", -1)
-	input = strings.Replace(input, ",", -1)
-	input = strings.Replace(input, "-", -1)
-	input = strings.Replace(input, ")", -1)
-	input = strings.Replace(input, "(", -1)
-	input = strings.Replace(input, "[", -1)
-	input = strings.Replace(input, "]", -1)
-	input = strings.Replace(input, "@", -1)
-	input = strings.Replace(input, "#", -1)
-	input = strings.Replace(input, "$", -1)
-	input = strings.Replace(input, "^", -1)
-	input = strings.Replace(input, "&", -1)
-	input = strings.Replace(input, "*", -1)
-	input = strings.Replace(input, "_", -1)
-	input = strings.Replace(input, "+", -1)
-	input = strings.Replace(input, "=", -1)
-	input = strings.Replace(input, "`", -1)
-	input = strings.Replace(input, "~", -1)
-	input = strings.Replace(input, "{", -1)
-	input = strings.Replace(input, "}", -1)
-	input = strings.Replace(input, ":", -1)
-	input = strings.Replace(input, "\"", -1)
-	input = strings.Replace(input, "\\", -1)
-	input = strings.Replace(input, "|", -1)
-	input = strings.Replace(input, ";", -1)
-	input = strings.Replace(input, ">", -1)
-	input = strings.Replace(input, "<", -1)
-	input = strings.Replace(input, "/", -1)
-	return input
-}
