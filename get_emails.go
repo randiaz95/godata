@@ -4,8 +4,10 @@ import ("fmt"; "os"; "bufio"; "regexp"; "strings")
 
 func main() {
     
-    var filename string = "entire_state_v.lst"
+    var filename string = "test_input.csv"
+    
     var output []string = extract_email(filename)
+    
     fmt.Println(output)
 
 }
