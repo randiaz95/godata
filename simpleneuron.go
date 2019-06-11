@@ -25,8 +25,8 @@ type Neuron struct {
 	LearningRate float64
 }
 
+/* Encode turns any string labels into numbers for our model. */
 func (n *Neuron) EncodeLabels() {
-	/* Turn any string labels into numbers for our model. */
 	
 	n.Encoding = make(map[string]float64)
 	for _, o := range n.Observations {
@@ -36,8 +36,8 @@ func (n *Neuron) EncodeLabels() {
 	}
 }
 
+/* DecodeLabels creates a number to string text for human readability. */
 func (n *Neuron) DecodeLabels() {
-	/* Create a number to string text for human readability */
 	
 	n.Decoding = make(map[float64]string)
 	for label, code := range n.Encoding {
@@ -45,8 +45,8 @@ func (n *Neuron) DecodeLabels() {
 	}
 }
 
+/* Decode turns a decimal number to nearest categorical number in decoding map. */
 func (n *Neuron) Decode(pred float64) string {
-	/* Turn a decimal number to nearest categorical number in decoding map */
 	
 	var minimum float64 = 1000000
 	var decoded string = ""
@@ -65,14 +65,17 @@ func (n *Neuron) Decode(pred float64) string {
 
 }
 
+/* PrepareWeights just initializes the weights vector with 0 initial values. */
 func (n *Neuron) PrepareWeights() {
 	n.Weights = make([]float64, len(n.Observations[0].Measurements)+1)
 }
 
+/* Sigmoid function normalizes the input into values from 0 to 1 */
 func (n *Neuron) Sigmoid(input float64) float64 {
 	return 1 / (1 + math.Exp(-1*input))
 }
 
+/* Process uses the gradient descent algorithm to train the weights with the observations. */
 func (n *Neuron) Process() float64 {
 	costs := 0.0
 	for _, observed := range n.Observations {
@@ -98,6 +101,7 @@ func (n *Neuron) Process() float64 {
 	return costs
 }
 
+/* Train runs the process function many times, or specifically: iterations many times. */
 func (n *Neuron) Train(iterations int) {
 	var costs []float64
 
@@ -111,6 +115,7 @@ func (n *Neuron) Train(iterations int) {
 	
 }
 
+/* Learn function just sets the hyper parameters and requires no thinking. */
 func (n *Neuron) Learn(iterations int) {
 	n.EncodeLabels()
 	n.PrepareWeights()
@@ -118,12 +123,13 @@ func (n *Neuron) Learn(iterations int) {
 	n.Train(iterations)
 }
 
+/* The prediction uses the model: {rediction = sigmoid( Length * w1 + Width * w2 + bias ) */
 func (n *Neuron) Predict(new_measurement ...float64) float64 {
 
-	// Label = sigmoid( Length * w1 + Width * w2 + bias )
 	return n.Sigmoid(new_measurement[0]*n.Weights[0] + new_measurement[1]*n.Weights[1] + n.Weights[2])
 }
 
+/* Plots the data that is inputted into a local file. "costs.png" */
 func (n *Neuron) Plot(input []float64) {
 	p, err := plot.New()
 	if err != nil {
