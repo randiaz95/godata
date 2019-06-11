@@ -123,14 +123,14 @@ func (n *Neuron) Learn(iterations int) {
 	n.Train(iterations)
 }
 
-/* The prediction uses the model: {rediction = sigmoid( Length * w1 + Width * w2 + bias ) */
+/* The prediction uses the model: {prediction = sigmoid( Length * w1 + Width * w2 + bias ) */
 func (n *Neuron) Predict(new_measurement ...float64) float64 {
 	output := 0.0
-	
+
 	for index, measurement := range new_measurement {
         output += measurement * n.Weights[index]
     }
-    output += n.Weights[len(new_measurements)]
+    output += n.Weights[len(new_measurement)]
     
 	return n.Sigmoid(output)
 }
