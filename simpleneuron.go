@@ -26,6 +26,8 @@ type Neuron struct {
 }
 
 func (n *Neuron) EncodeLabels() {
+	/* Turn any string labels into numbers for our model. */
+	
 	n.Encoding = make(map[string]float64)
 	for _, o := range n.Observations {
 		if _, ok := n.Encoding[o.Label]; !ok {
@@ -35,6 +37,8 @@ func (n *Neuron) EncodeLabels() {
 }
 
 func (n *Neuron) DecodeLabels() {
+	/* Create a number to string text for human readability */
+	
 	n.Decoding = make(map[float64]string)
 	for label, code := range n.Encoding {
 		n.Decoding[code] = label
@@ -42,6 +46,8 @@ func (n *Neuron) DecodeLabels() {
 }
 
 func (n *Neuron) Decode(pred float64) string {
+	/* Turn a decimal number to nearest categorical number in decoding map */
+	
 	var minimum float64 = 1000000
 	var decoded string = ""
 
