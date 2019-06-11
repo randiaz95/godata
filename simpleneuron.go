@@ -12,9 +12,15 @@ import (
 	"gonum.org/v1/plot/vg"
 )
 
+type Feature struct {
+	Dtype string
+	Numerical float64
+	Categorical string
+}
+
 type History struct {
 	Label        string
-	Measurements []float64
+	Measurements []Feature
 }
 
 type Neuron struct {
@@ -200,7 +206,7 @@ func main() {
 
 	for {
 		
-		fmt.Println("What length?")
+		fmt.Println("\n\nWhat length?")
 		scanner.Scan()
 		length_string := scanner.Text()
 		length, _ := strconv.ParseFloat(length_string, 32)
@@ -210,6 +216,7 @@ func main() {
 		width_string := scanner.Text()
 		width, _ := strconv.ParseFloat(width_string, 32)
 
+		fmt.Println()
 		fmt.Println(brain.Decode(brain.Predict(length, width)))
 		fmt.Println()
 	}
