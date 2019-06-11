@@ -125,8 +125,14 @@ func (n *Neuron) Learn(iterations int) {
 
 /* The prediction uses the model: {rediction = sigmoid( Length * w1 + Width * w2 + bias ) */
 func (n *Neuron) Predict(new_measurement ...float64) float64 {
-
-	return n.Sigmoid(new_measurement[0]*n.Weights[0] + new_measurement[1]*n.Weights[1] + n.Weights[2])
+	output := 0.0
+	
+	for index, measurement := range new_measurement {
+        output += measurement * n.Weights[index]
+    }
+    output += n.Weights[len(new_measurements)]
+    
+	return n.Sigmoid(output)
 }
 
 /* Plots the data that is inputted into a local file. "costs.png" */
@@ -175,6 +181,7 @@ func main() {
 
 	brain.EncodeLabels()
 	fmt.Println("BRAIN LABEL ENCODING: ", brain.Encoding)
+
 	brain.DecodeLabels()
 	fmt.Println("BRAIN LABEL ENCODING: ", brain.Decoding)
 
