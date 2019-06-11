@@ -6,7 +6,6 @@ import (
 	"math"
 	"bufio"
 	"strconv"
-	"io/ioutil"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/plotutil"
@@ -166,10 +165,19 @@ func (n *Neuron) Plot(input []float64) {
 }
 
 func main() {
-	var filename string = "./voter_data.txt"
-	var input string = ReadFile(filename)
-	var training []History = SplitMeasurements(input, "color")
-	var brain Neuron = Neuron{Observations: training}
+
+	var brain Neuron = Neuron{
+		Observations: []History{
+			History{"red", []float64{3, 1.5}},
+			History{"blue", []float64{2, 1}},
+			History{"red", []float64{4, 1.5}},
+			History{"blue", []float64{3, 1}},
+			History{"red", []float64{3.5, 0.5}},
+			History{"blue", []float64{2, 0.5}},
+			History{"red", []float64{5.5, 1}},
+			History{"blue", []float64{1, 1}},
+		},
+	}
 
 	brain.EncodeLabels()
 	fmt.Println("BRAIN LABEL ENCODING: ", brain.Encoding)
