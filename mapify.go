@@ -78,7 +78,6 @@ func TriMapify(input string) map[string]int {
 
 // Turn a string into a map with any number of words as key.
 // Then count the instances of those pairs/tuples etc.
-
 func NMapify(input string, words int) map[string]int {
 
 	var (
@@ -93,7 +92,7 @@ func NMapify(input string, words int) map[string]int {
 	for index, word := range strings.FieldsFunc(input, f) {
 		firstword[0] = word
 		tuple = append(firstword, tuple[:len(tuple)-1]...)
-		
+
 		if index % 2 == 0 {
 
 			frequency[strings.Join(tuple, " ")]++
