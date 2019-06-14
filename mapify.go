@@ -1,6 +1,6 @@
 package main
 
-import ("fmt"; "strings")
+import ("fmt"; "strings"; "unicode")
 
 func main() {
 
@@ -14,17 +14,18 @@ func main() {
 func mapify(input string) map[string]int {
 	// Accept string input and return map of frequency.
 
-	var frequency map[string]int = make(map[string]int)
-	var word string
-	var count int
-	var exists bool
-
-	for _, word = range strings.Split(input, " ") {
-		if count, exists = frequency[word]; exists {
-			frequency[word] = count + 1
-		} else {
-			frequency[word] = 1
+    var (
+    	word      string
+        frequency = make(map[string]int)
+        f = func(c rune) bool {
+			return !unicode.IsLetter(c) && !unicode.IsNumber(c)
 		}
+    )
+
+	for _, word = range strings.FieldsFunc(input, f) {
+		
+		frequency[word]++
+		
 	}
 
 	return frequency

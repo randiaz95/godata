@@ -15,4 +15,5 @@ func main() {
 	for token, vector := range onehotvectors {
 	    fmt.Println(token, vector)
 	}
+
 }
